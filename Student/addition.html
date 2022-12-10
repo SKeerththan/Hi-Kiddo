@@ -39,7 +39,7 @@
         </div>
     </div>
     <hr>
-    <div>
+    <div id="question">
         <div id="imageOneRender">
 
         </div>
@@ -97,6 +97,8 @@
             numberOne = Math.floor((Math.random()) * 9);
             numberTwo = Math.floor((Math.random()) * 9);
             systemAnswer = numberOne + numberTwo;
+            numberOne=0;
+            numberTwo=0;
 
             if (!(systemAnswer < 10)) {
                 generateAddition();
@@ -107,22 +109,34 @@
                 document.getElementById("answer").innerHTML = systemAnswer;
 
                 //render number one in  image view
-                const imageSrc = "<img src='Images/Fruits/1.png' class='sign' alt=''>"
+                let imgIndex = Math.floor(Math.random() * 4);
+                const imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''>`;
                 let outputSrc = "";
-                while (numberOne > 0) {
-                    outputSrc += imageSrc;
 
-                    numberOne--;
+
+                if (numberOne == 0) {
+                    outputSrc = "<img src='Images/Fruits/emptyBasket.png' class='sign' alt=''>";
+                } else {
+                    while (numberOne > 0) {
+                        outputSrc += imageSrc;
+
+                        numberOne--;
+                    }
                 }
+
                 document.getElementById("imageOneRender").innerHTML = outputSrc;
 
 
                 //render number two  in image view
                 outputSrc = "";
-                while (numberTwo > 0) {
-                    outputSrc += imageSrc;
+                if (numberTwo == 0) {
+                    outputSrc = "<img src='Images/Fruits/emptyBasket.png' class='sign' alt=''>";
+                } else {
+                    while (numberTwo > 0) {
+                        outputSrc += imageSrc;
 
-                    numberTwo--;
+                        numberTwo--;
+                    }
                 }
                 document.getElementById("imageTwoRender").innerHTML = outputSrc;
 
@@ -145,10 +159,14 @@
             //correct answer
             let outputInitial = "";
             let answerValue = systemAnswer;
-            while (answerValue > 0) {
-                outputInitial += imageSrc;
+            if (answerValue == 0) {
+                outputInitial = "<img src='Images/Fruits/emptyBasket.png' class='sign' alt=''>";
+            } else {
+                while (answerValue > 0) {
+                    outputInitial += imageSrc;
 
-                answerValue--;
+                    answerValue--;
+                }
             }
             document.getElementById(systemAnswerId).innerHTML = outputInitial;
             //other answer
@@ -167,9 +185,9 @@
                         if (answerValue <= 0) {
                             answerValue += 6;
                         }
-                        if (systemAnswer == 0) {
-                            answerValue = 0;
-                        }
+                        // if (systemAnswer == 0) {
+                        //     answerValue = 0;
+                        // }
                         while (answerValue > 0) {
                             outputInitial += imageSrc;
 
@@ -219,6 +237,13 @@
 
         }
 
+        function reset() {
+            var container = document.getElementById("question");
+            container.innerHTML = html;
+        }
+        window.onload = function () {
+            html = document.getElementById('question').innerHTML;
+        };
 
 
         function checkAnswer(data) {
@@ -229,13 +254,18 @@
 
                 consumeTime = (endTime - startTime) / 1000;
                 // alert(consumeTime);
-                alert("Corrent answer");
-                window.setTimeout(loadQuestion, 2000);
+                alert(numberOfAttemp);
+                // window.setTimeout(loadQuestion, 2000);
+
+                reset();
+                generateAddition();
+                numberOfAttemp = 0;
 
 
             }
             else {
                 alert("wrong answer");
+                reset();
             }
 
         }

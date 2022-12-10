@@ -1,0 +1,81 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="CSS/addition.css">
+    <style>
+        #questionAnswer {
+            width: 350px;
+            height: 70px;
+            padding: 10px;
+            border: 1px solid #aaaaaa;
+        }
+    </style>
+    <title>Find Number</title>
+</head>
+
+<body>
+
+    <div>
+        <div>
+            <h1 id="numberQuestion"></h1>
+
+        </div>
+        <div>
+            <img src="Images/Sign/=.png" class=" sign" alt="">
+        </div>
+        <div id="questionAnswer" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <img src="Images/Sign/questionMark.png" class=" sign" alt="">
+        </div>
+    </div>
+    <div>
+        <div id="ansOne" draggable="true" ondragstart="drag(event)"></div>
+        <div id="ansTwo" draggable="true" ondragstart="drag(event)"></div>
+        <div id="ansThree" draggable="true" ondragstart="drag(event)"></div>
+        <div id="ansFour" draggable="true" ondragstart="drag(event)"></div>
+    </div>
+
+
+    <script>
+        let questionNumber;
+
+
+        questionNumber = Math.floor(Math.random() * 10);
+        document.getElementById("numberQuestion").innerHTML = questionNumber;
+        let answetId = ["ansOne", "ansTwo", "ansThree", "ansFour"];
+        for(let index=0;index<answetId.length;index++){
+            
+        }
+
+
+
+
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+            //document.getElementById("print").innerHTML =data;
+            checkAnswer(data);
+
+        }
+
+
+
+
+    </script>
+
+</body>
+
+
+</html>
