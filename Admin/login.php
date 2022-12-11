@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <?php 
   include 'Database/dbconnect.php'; 
   if(isset($_POST['login']))
