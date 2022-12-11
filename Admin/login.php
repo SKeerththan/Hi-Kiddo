@@ -13,7 +13,7 @@
         if($row['password']==$password)
         {
           
-          header("location:gamePanel.php");
+          header("location:adminPanel.php");
           $con -> close();
         }
         else
