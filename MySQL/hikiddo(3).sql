@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 12, 2022 at 04:38 PM
+-- Generation Time: Dec 12, 2022 at 04:44 PM
 -- Server version: 10.6.5-MariaDB
 -- PHP Version: 7.4.26
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `hikiddo`
 --
-CREATE DATABASE IF NOT EXISTS `hikiddo` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `hikiddo`;
 
 -- --------------------------------------------------------
 
