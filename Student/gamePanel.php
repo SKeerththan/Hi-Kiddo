@@ -51,10 +51,10 @@ if(!session_start()){
     </header>
 
 
-    <a href="findNumber.php">level-1</a><br>
-    <a href="findObjectByNumber.html">level-2</a> <br>
-    <a href="addNumber.html">level-3</a> <br>
-    <a href="subNumber.html">level-4</a> <br>
+    <a href="Level1.php">level-1</a><br>
+    <a href="Level2.php">level-2</a> <br>
+    <a href="Level3.php">level-3</a> <br>
+    <a href="Level4.php">level-4</a> <br>
     <a href="multiNumber.html">level-5</a> <br>
     <a href="divideNumber.html">level-6</a> <br>
 

@@ -48,6 +48,7 @@
         let startTime = new Date();
         let endTime = 0;
         let consumeTime = 0;
+        let dragTime=0;
 
 
         loadQuestion();
@@ -160,7 +161,9 @@
         }
 
         function drop(ev) {
-            ev.preventDefault();
+            if( dragTime<1)
+            {
+                ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
             ev.target.appendChild(document.getElementById(data));
             studentAnswerID = data;
@@ -168,6 +171,13 @@
             //alert(data);
             //document.getElementById("print").innerHTML =data;
             //checkAnswer(data);
+            dragTime++;
+
+            }
+            else{
+                reset();
+                dragTime=0;
+            }
 
 
         }
