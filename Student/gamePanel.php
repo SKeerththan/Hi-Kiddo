@@ -1,6 +1,6 @@
 <?php
 // Start the session
-if(!session_start()){
+if (!session_start()) {
     header("location:loginStudent.php");
 }
 
@@ -55,8 +55,8 @@ if(!session_start()){
     <a href="Level2.php">level-2</a> <br>
     <a href="Level3.php">level-3</a> <br>
     <a href="Level4.php">level-4</a> <br>
-    <a href="multiNumber.html">level-5</a> <br>
-    <a href="divideNumber.html">level-6</a> <br>
+    <a href="Level5.php">level-5</a> <br>
+    <a href="Level6.php">level-6</a> <br>
 
 
 
