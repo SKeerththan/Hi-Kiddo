@@ -1,6 +1,7 @@
 
 body {
-    background-color: #F3EBF6;
+    /* background-color: #F3EBF6; */
+  
     overflow-y: hidden;
 	display: flex;
 	justify-content: center;
