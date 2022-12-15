@@ -39,9 +39,9 @@ if (isset($_POST['checkData'])) {
         }
     } else {
         include 'Database/dbconnect.php';
-        $studentIndexNumber = $_SESSION['kidName'];
+        $studentIndexNumber = $_SESSION['kidIndex'];
         $status = 0;
-        $duration = (time() - $_POST['kidIndex']);
+        $duration = (time() - $_POST['enterTime']);
         $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $result = $con->query("INSERT INTO `levelsix`( `studentindexno`, `status`, `time`) VALUES ('$studentIndexNumber','$status','$duration')");
 
@@ -56,6 +56,14 @@ if (isset($_POST['checkData'])) {
             echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     }
+        $studentIndexNumber = $_SESSION['kidIndex'];
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(`qId`) AS number FROM levelsix WHERE `studentindexno`=$studentIndexNumber";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['number'];
+    echo $data;
+    $result = $con->query("UPDATE student SET levelSix ='$data' WHERE `indexNo`=$studentIndexNumber");
 }
 
 ?>

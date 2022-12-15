@@ -347,7 +347,7 @@ if (isset($_POST['deleteStudent'])) {
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 1</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count  Vs Time</p>
                 <canvas id="level1" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
@@ -362,7 +362,7 @@ if (isset($_POST['deleteStudent'])) {
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 2</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs  Time</p>
                 <canvas id="level2" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
@@ -376,7 +376,7 @@ if (isset($_POST['deleteStudent'])) {
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 3</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs  Time</p>
                 <canvas id="level3" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>

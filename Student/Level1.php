@@ -39,7 +39,7 @@ if (isset($_POST['checkData'])) {
         }
     } else {
         include 'Database/dbconnect.php';
-        $studentIndexNumber = $_SESSION['kidName'];
+        $studentIndexNumber = $_SESSION['kidIndex'];
         $status = 0;
         $duration = (time() - $_POST['enterTime']);
         $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -56,6 +56,17 @@ if (isset($_POST['checkData'])) {
             echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     }
+
+  
+    $studentIndexNumber = $_SESSION['kidIndex'];
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(`qId`) AS number FROM levelone WHERE `studentindexno`=$studentIndexNumber";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['number'];
+    $result = $con->query("UPDATE student SET levelOne ='$data' WHERE `indexNo`=$studentIndexNumber");
+
+
 }
 
 ?>
@@ -125,7 +136,7 @@ if (isset($_POST['checkData'])) {
 
             <div class="row" id="answers">
                 <label class="labl">
-                    <input type="radio" id="a0" name="radioname" checked />
+                    <input type="radio" id="a0" name="radioname" />
 
                     <div class="col-4" id="0"></div>
 
@@ -137,7 +148,7 @@ if (isset($_POST['checkData'])) {
 
                 </label>
                 <label class="labl">
-                    <input type="radio" id="a2" name="radioname" />
+                    <input type="radio" id="a2" name="radioname" checked />
 
                     <div class="col-4" id="2"></div>
 
