@@ -54,7 +54,7 @@ session_start();
 
 <header class="header">
 
-  <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> Hi Kiddo </a>
+  <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i>Math-4-Mind </a>
 
   <nav class="navbar">
       <a href="#home" hidden>home</a>
