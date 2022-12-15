@@ -15,7 +15,7 @@ if (isset($_POST['addStudent'])) {
     $age = $_POST['studentAge'];
 
     $gender = $_POST['flexRadioDefault'];
-    $con = new mysqli("localhost", "root", "", DB_DATABASE);
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     $result = $con->query("INSERT INTO `student`(`indexNo`, `name`,`age`,`gender`) VALUES ('$studentIndexNumber','$studentName','$age','$gender')  ");
 
 
@@ -46,7 +46,7 @@ if (isset($_POST['updateStudent'])) {
     $age = $_POST['studentAge'];
     $gender = $_POST['flexRadioDefault'];
 
-    $con = new mysqli("localhost", "root", "", DB_DATABASE);
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     $result = $con->query("UPDATE `student` SET `indexNo`='$studentIndexNumber',`name`='$studentName',`age`='$age',`gender`='$gender' WHERE `indexNo`=$studentIndexNumber ");
 
 
@@ -73,7 +73,7 @@ if (isset($_POST['deleteStudent'])) {
 
     $studentIndexNumber = $_POST['to_delete_user'];
 
-    $con = new mysqli("localhost", "root", "", DB_DATABASE);
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     $result = $con->query("DELETE FROM `student` WHERE `indexNo` =$studentIndexNumber ");
 
 
@@ -112,7 +112,7 @@ if (isset($_POST['deleteStudent'])) {
             background-image: url("Images/6.jpg");
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-size: auto;
+            background-size: 100%;
 
 
 
@@ -154,7 +154,7 @@ if (isset($_POST['deleteStudent'])) {
 
 </head>
 
-<body class="containerBG" onload="autoNotify()">
+<body class="containerBG " onload="autoNotify()">
 
 
     <div class="container  p-1 shadow-lg rounded bg-warning  fixed-top   snow ">
@@ -162,7 +162,7 @@ if (isset($_POST['deleteStudent'])) {
             <div class="col-12 ">
                 <h1 class="text-light " style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 5px black;"><b>Math-4-Mind</b></h1>
                 <audio id="notifypop">
-                    <!-- <source src="Audio/welcomee.mp3" type="audio/mp3"> -->
+                    <source src="Audio/welcomee.mp3" type="audio/mp3">
                 </audio>
             </div>
         </div>
@@ -181,7 +181,7 @@ if (isset($_POST['deleteStudent'])) {
     <br>
     <br>
 
-    <div class="container p-5 shadow-lg rounded bg-light  ">
+    <div class="container p-5 shadow-lg rounded bg-light   ">
         <div class="row ">
             <div class=" col-sm p-2">
                 <form method="post" action="adminPanel.php">
@@ -277,7 +277,7 @@ if (isset($_POST['deleteStudent'])) {
 
 
                     //include 'Database/dbconnect.php'; 
-                    $con = new mysqli("localhost", "root", "", DB_DATABASE);
+                    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
                     $sql = mysqli_query($con, "SELECT * FROM `student` ");
                     $row = mysqli_num_rows($sql);
                     $con->close();
@@ -332,13 +332,10 @@ if (isset($_POST['deleteStudent'])) {
     <div class=" container p-5 shadow-lg rounded bg-light">
         <div class="row">
             <div class=" col-12 p-2 overflow-auto">
-                <p class="text-center h2 font-weight-bold"> Level Vs Gender</p>
+                <p class="text-center h2 font-weight-bold"> Levels Vs Gender</p>
                 <canvas id="levelGender" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
-
-
-
         </div>
     </div>
     <br>
@@ -347,14 +344,14 @@ if (isset($_POST['deleteStudent'])) {
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 1</p>
-                <p class="text-center h2 font-weight-bold"> Count  Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level1" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
 
     <br>
 
@@ -362,70 +359,70 @@ if (isset($_POST['deleteStudent'])) {
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 2</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs  Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level2" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
     <br>
 
     <div class="container p-5 shadow-lg rounded bg-light">
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 3</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs  Time</p>
+                <p class="text-center h2 font-weight-bold">Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level3" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
     <br>
 
     <div class="container p-5 shadow-lg rounded bg-light">
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 4</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level4" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
     <br>
 
     <div class="container p-5 shadow-lg rounded bg-light">
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 5</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level5" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
     <br>
 
     <div class="container p-5 shadow-lg rounded bg-light">
         <div class="row  ">
             <div class="col-12 p-2 overflow-auto">
                 <p class="text-center h2 font-weight-bold"> Level - 6</p>
-                <p class="text-center h2 font-weight-bold"> Count Vs Attemps Vs Time</p>
+                <p class="text-center h2 font-weight-bold"> Count Vs Time Vs Right/Wrong</p>
                 <canvas id="level6" style="width:100%;max-width:600px;margin: 0 auto;"></canvas>
 
             </div>
         </div>
     </div>
 
-    </div>
+
     <br>
     <br>
     <br>
@@ -437,22 +434,148 @@ if (isset($_POST['deleteStudent'])) {
 
 
     <?php
+
+    //Level Vs Gender
+    echo "    <script>
+    let xValue =['','Level 1','Level 2','Level 3','Level 4','Level 5','Level 6'];
+    let maleCount =[0];
+    let femaleCount =[0];
+    let count =0; ";
+
+    //Level one Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelOne>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelOne>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+    //Level Two Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelTwo>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelTwo>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+    //Level Three Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelThree>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelThree>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+    //Level Four Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFour>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFour>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+    //Level Five Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFive>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFive>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+    //Level Six Male and Female Details
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelSix>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "maleCount.push( " . $data . ");";
+
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelSix>10";
+    $result = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($result);
+    $data = $data['maleCount'];
+    echo "femaleCount.push( " . $data . ");";
+
+
+
+    echo "new Chart('levelGender', {
+        type: 'bar',
+        data: {
+          labels: xValue,
+          datasets: [{ 
+            data:maleCount,
+            borderColor: 'red',
+            fill: false
+          }, { 
+            data:femaleCount,
+            borderColor: 'green',
+            fill: false
+          }]
+        },
+        options: {
+          legend: {display: false}
+        }
+      });
+
+      console.log(xValue,attemps,duration);
+      </script>";
+
+
+
+
     if (isset($_POST['generateReport'])) {
+        //Level 1
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelonetable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `levelone` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
-                        let xValue =[];
-                        let attemps =[];
-                        let duration =[];
-                        let count =0;  ";
+                        xValue =[];
+                        attemps =[];
+                        duration =[];
+                       count =0;  ";
 
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                            attemps.push( " . $row['attemps'] . ");
+                            attemps.push( " . $row['status'] . ");
                             duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level1', {
@@ -481,8 +604,8 @@ if (isset($_POST['deleteStudent'])) {
 
         //level-2
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `leveltwotable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `leveltwo` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
@@ -494,7 +617,7 @@ if (isset($_POST['deleteStudent'])) {
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                            attemps.push( " . $row['attemps'] . ");
+                            attemps.push( " . $row['status'] . ");
                             duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level2', {
@@ -521,8 +644,8 @@ if (isset($_POST['deleteStudent'])) {
 
         //level-3
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelthreetable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `levelthree` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
@@ -534,7 +657,7 @@ if (isset($_POST['deleteStudent'])) {
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                            attemps.push( " . $row['attemps'] . ");
+                            attemps.push( " . $row['status'] . ");
                             duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level3', {
@@ -566,8 +689,8 @@ if (isset($_POST['deleteStudent'])) {
 
         //level-4
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelfourtable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `levelfour` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
@@ -579,7 +702,7 @@ if (isset($_POST['deleteStudent'])) {
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                          attemps.push( " . $row['attemps'] . ");
+                          attemps.push( " . $row['status'] . ");
                           duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level4', {
@@ -606,8 +729,8 @@ if (isset($_POST['deleteStudent'])) {
 
         //level-5
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelfiveable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `levelfive` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
@@ -619,7 +742,7 @@ if (isset($_POST['deleteStudent'])) {
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                              attemps.push( " . $row['attemps'] . ");
+                              attemps.push( " . $row['status'] . ");
                               duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level5', {
@@ -646,8 +769,8 @@ if (isset($_POST['deleteStudent'])) {
 
         //level-6
         $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelsixtable` WHERE `studentIndexNo` =$studentIndexNumber");
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+        $sql = mysqli_query($con, "SELECT * FROM `levelsix` WHERE `studentIndexNo` =$studentIndexNumber");
         $row = mysqli_num_rows($sql);
         $con->close();
         echo "    <script>
@@ -659,7 +782,7 @@ if (isset($_POST['deleteStudent'])) {
         while ($row = mysqli_fetch_array($sql)) {
 
             echo " xValue.push(++count) ;
-                            attemps.push( " . $row['attemps'] . ");
+                            attemps.push( " . $row['status'] . ");
                             duration.push(" . $row['time'] . " );";
         }
         echo "new Chart('level6', {
@@ -683,59 +806,8 @@ if (isset($_POST['deleteStudent'])) {
   
                           console.log(xValue,attemps,duration);
                           </script>";
-
-        //Level Vs Gender
-
-        $studentIndexNumber = $_POST['to_delete_user'];
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
-        $sql = mysqli_query($con, "SELECT * FROM `levelsixtable` WHERE `studentIndexNo` =$studentIndexNumber");
-        $row = mysqli_num_rows($sql);
-        
-        $con->close();
-        echo "    <script>
-                        xValue =[];
-                        attemps =[];
-                        duration =[];
-                       count =0;  ";
-
-        while ($row = mysqli_fetch_array($sql)) {
-
-            echo " xValue.push(++count) ;
-                            attemps.push( " . $row['attemps'] . ");
-                            duration.push(" . $row['time'] . " );";
-        }
-
-        echo "new Chart('levelGender', {
-            type: 'line',
-            data: {
-              labels: xValue,
-              datasets: [{ 
-                data:attemps,
-                borderColor: 'red',
-                fill: false
-              }, { 
-                data:duration,
-                borderColor: 'green',
-                fill: false
-              }]
-            },
-            options: {
-              legend: {display: false}
-            }
-          });
-
-          console.log(xValue,attemps,duration);
-          </script>";
-
-
-
     }
     ?>
-
-
-
-
-
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

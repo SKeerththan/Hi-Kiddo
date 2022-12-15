@@ -8,7 +8,7 @@ if (!session_start()) {
 ?>
 <?php
 if (isset($_POST['checkData'])) {
-
+    sleep(3);
 
     //Get the values from javascript
     $correctAnswerIDs = $_POST['ans'];
@@ -29,13 +29,13 @@ if (isset($_POST['checkData'])) {
 
         if ($result === TRUE) {
             $con->close();
-            echo "<script>alert('New record created successfully');</script>";
+           // echo "<script>alert('New record created successfully');</script>";
 
             // header("location:admminPanel.php");
 
         } else {
             $con->close();
-            echo "<script>alert('Duplicate value : check indexNo');</script>";
+           // echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     } else {
         include 'Database/dbconnect.php';
@@ -47,22 +47,21 @@ if (isset($_POST['checkData'])) {
 
         if ($result === TRUE) {
             $con->close();
-            echo "<script>alert('New record created successfully');</script>";
+           // echo "<script>alert('New record created successfully');</script>";
 
             // header("location:admminPanel.php");
 
         } else {
             $con->close();
-            echo "<script>alert('Duplicate value : check indexNo');</script>";
+           // echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     }
-        $studentIndexNumber = $_SESSION['kidIndex'];
+    $studentIndexNumber = $_SESSION['kidIndex'];
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
     $sql = "SELECT COUNT(`qId`) AS number FROM levelsix WHERE `studentindexno`=$studentIndexNumber";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['number'];
-    echo $data;
     $result = $con->query("UPDATE student SET levelSix ='$data' WHERE `indexNo`=$studentIndexNumber");
 }
 
@@ -76,6 +75,7 @@ if (isset($_POST['checkData'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level-6</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="libs/minn.js"></script>
     <!-- <script>
         $("form").submit(function() {
             $.post($(this).attr("action"), $(this).serialize());
@@ -173,7 +173,7 @@ if (isset($_POST['checkData'])) {
         <div>
 
 
-            <button type="submit" id="btnSubmit" name="checkData">check</button>
+            <button type="submit" id="btnSubmit" onclick="check()" name="checkData">check</button>
 
         </div>
     </form>
@@ -319,8 +319,27 @@ if (isset($_POST['checkData'])) {
                 break;
             }
         }
+
+        function check() {
+            if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
+                swal("Good job!", "You choose the right answer.", "success");
+
+            } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
+                swal("Excellent!", "Keep Going", "success");
+
+            } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
+                swal("Well done!", "You are so smart", "success");
+
+            } else {
+
+                swal("That is not a suitable answer, Correct answer : " + numberOne + "÷" + numberTwo + "=" + correctAnswer, "Give another try", "error");
+            }
+        }
     </script>
 
+
+    <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="libs/cute-alert/cute-alert.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
