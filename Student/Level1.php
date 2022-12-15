@@ -274,8 +274,34 @@ if (isset($_POST['checkData'])) {
 
             } else {
 
-                swal("That is not a suitable answer, Correct answer is :"+correctAnswer, "Give another try", "error" );
+                swal("That is not a suitable answer, Correct answer is :" + correctAnswer, "Give another try", "error");
             }
+        }
+
+        setTimeout(() => {
+            speakMe();
+        }, 2000);
+
+        function speakMe() {
+            let textToSpeak = "Find the Number "+correctAnswer;
+            let speakData = new SpeechSynthesisUtterance();
+            speakData.volume = 1; // From 0 to 1
+            speakData.rate = 1; // From 0.1 to 10
+            speakData.pitch = 2; // From 0 to 2
+            speakData.text = textToSpeak;
+            speakData.lang = 'en';
+            speakData.voice = getVoices()[3];
+            speechSynthesis.speak(speakData);
+        }
+
+        function getVoices() {
+            let voices = speechSynthesis.getVoices();
+            if (!voices.length) {
+                let utterance = new SpeechSynthesisUtterance("");
+                speechSynthesis.speak(utterance);
+                voices = speechSynthesis.getVoices();
+            }
+            return voices;
         }
     </script>
 
