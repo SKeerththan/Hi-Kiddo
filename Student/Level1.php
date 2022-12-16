@@ -283,7 +283,7 @@ if (isset($_POST['checkData'])) {
         }, 2000);
 
         function speakMe() {
-            let textToSpeak = "Find the Number "+correctAnswer;
+            let textToSpeak = "Find the Number " + correctAnswer;
             let speakData = new SpeechSynthesisUtterance();
             speakData.volume = 1; // From 0 to 1
             speakData.rate = 1; // From 0.1 to 10
@@ -292,6 +292,9 @@ if (isset($_POST['checkData'])) {
             speakData.lang = 'en';
             speakData.voice = getVoices()[3];
             speechSynthesis.speak(speakData);
+            setTimeout(() => {
+                speakMe();
+            }, 7000);
         }
 
         function getVoices() {

@@ -180,6 +180,8 @@ if (isset($_POST['checkData'])) {
     </form>
 
 
+
+
     <script>
         let numberOfAttemp = 1;
         let startTime = new Date();
@@ -342,6 +344,9 @@ if (isset($_POST['checkData'])) {
             speakData.lang = 'en';
             speakData.voice = getVoices()[3];
             speechSynthesis.speak(speakData);
+            setTimeout(() => {
+                speakMe();
+            }, 7000);
         }
 
         function getVoices() {
