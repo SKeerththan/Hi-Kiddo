@@ -145,7 +145,7 @@ if (isset($_POST['login'])) {
         <option selected>Name</option>
         <?php
         include 'Database/dbconnect.php';
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $sql = mysqli_query($con, "SELECT `indexNo`, `name` FROM `student` ");
         $row = mysqli_num_rows($sql);
         while ($row = mysqli_fetch_array($sql)) {
@@ -161,7 +161,7 @@ if (isset($_POST['login'])) {
         <option selected>Index No</option>
         <?php
         include 'Database/dbconnect.php';
-        $con = new mysqli("localhost", "root", "", DB_DATABASE);
+        $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $sql = mysqli_query($con, "SELECT `indexNo`, `name` FROM `student` ");
         $row = mysqli_num_rows($sql);
         while ($row = mysqli_fetch_array($sql)) {
