@@ -44,7 +44,7 @@ session_start();
 <html>
 
 <head>
-  <link rel="stylesheet" href="CSS/select.css">
+  <link rel="stylesheet" href="CSS/loginStudent.css">
   <script src="select.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Select</title>
@@ -54,7 +54,7 @@ session_start();
 
 <header class="header">
 
-  <a href="#" class="logo"> <i class="fas fa-shopping-basket"></i> Hi Kiddo </a>
+  <a href="#" class="logo" style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 4px gray; font-size:30px"> Math-4-Mind </a>
 
   <nav class="navbar">
       <a href="#home" hidden>home</a>
@@ -66,6 +66,28 @@ session_start();
 <!-- header section ends -->
 
 <div class="main">
+        <!-- birds starts  -->
+<div class="container">
+    
+    <div class="bird-container bird-container--one">
+      <div class="bird bird--one"></div>
+    </div>
+    
+    <div class="bird-container bird-container--two">
+      <div class="bird bird--two"></div>
+    </div>
+    
+    <div class="bird-container bird-container--three">
+      <div class="bird bird--three"></div>
+    </div>
+    
+    <div class="bird-container bird-container--four">
+      <div class="bird bird--four"></div>
+    </div>
+    
+    
+  </div>
+  <!-- birds ends  -->
   <p class="login">Select</p>
 <form class="form1" method="post" ac>
   <!-- name section starts  -->
@@ -99,7 +121,7 @@ session_start();
                                 ?>
 </select>
 <!-- index section starts  -->
-<button class="submit" type="submit" name="login" >Login</button >
+<button class="submit"  type="submit" name="login" style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 4px gray; font-size:18px">Login</button >
 </form>
 
 </div>

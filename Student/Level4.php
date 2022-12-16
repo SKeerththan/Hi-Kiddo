@@ -208,7 +208,7 @@ if (isset($_POST['checkData'])) {
             }
 
         }
-
+        document.getElementById("ans").value = correctAnswer;
 
 
         //assign question
