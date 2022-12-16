@@ -188,11 +188,11 @@ if (isset($_POST['deleteStudent'])) {
                     <div class="mb-3">
                         <h2>Add & Update Student</h2>
                         <label for="exampleInputEmail1" class="form-label">Index No</label>
-                        <input type="text" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo">
+                        <input type="text" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="123">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo123">
+                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">age</label>
@@ -226,7 +226,7 @@ if (isset($_POST['deleteStudent'])) {
                             <option selected>Kiddo</option>
                             <?php
                             include 'Database/dbconnect.php';
-                            $con = new mysqli("localhost", "root", "", DB_DATABASE);
+                            $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
                             $sql = mysqli_query($con, "SELECT `indexNo`, `name` FROM `student` ");
                             $row = mysqli_num_rows($sql);
                             while ($row = mysqli_fetch_array($sql)) {
