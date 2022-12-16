@@ -8,7 +8,7 @@ if (!session_start()) {
 ?>
 <?php
 if (isset($_POST['checkData'])) {
-    sleep(3);
+    sleep(4);
 
     //Get the values from javascript
     $correctAnswerIDs = $_POST['ans'];
@@ -74,8 +74,9 @@ if (isset($_POST['checkData'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level-6</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="libs/minn.js"></script>
+    <link rel="stylesheet" href="CSS/style.css">
+    
     <!-- <script>
         $("form").submit(function() {
             $.post($(this).attr("action"), $(this).serialize());
@@ -110,29 +111,27 @@ if (isset($_POST['checkData'])) {
     </style>
 </head>
 
-<body>
-    <div class="row">
-        <a href="gamePanel.php">Exit</a>
-    </div>
+<body style="background-color:#76c7f1;">
+        <div class="cards">
+        
     <form action="Level6.php" id="" method="POST">
         <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
         <div id="loadQuestions">
             <div class="row">
-                <div class="col" id="numberOne" style="font-size: 20ex;"></div>
-                <div class="col">
-                    <img src="Images/Sign/de.png" alt="" style="height: 100px;">
+                <div class="col1" id="numberOne" style="font-size: 15ex;"></div>
+                <div class="col2">
+                    <img src="Images/Sign/de.png" alt="" style="height: 80px;">
 
                 </div>
 
-                <div class="col" id="numberTwo" style="font-size: 20ex;"></div>
-                <div class="col">
-                    <img src="Images/Sign/=.png" alt="" style="height: 100px;">
+                <div class="col1" id="numberTwo" style="font-size: 15ex;"></div>
+                <div class="col2">
+                    <img src="Images/Sign/=.png" alt="" style="height: 60px;">
 
                 </div>
                 <input type="hidden" name="ans" id="ans">
 
-                <div class="col border border-secondary" id="dropAnswer">
-                </div>
+                <div class="col" id="dropAnswer" style="font-size: 15ex;">?</div>
             </div>
 
 
@@ -148,7 +147,7 @@ if (isset($_POST['checkData'])) {
             </div> -->
 
 
-            <div class="row" id="answers">
+            <div class="row1" id="answers">
                 <label class="labl">
                     <input type="radio" id="a0" name="radioname" checked />
 
@@ -158,13 +157,13 @@ if (isset($_POST['checkData'])) {
                 <label class="labl">
                     <input type="radio" id="a1" name="radioname" />
 
-                    <div class="col-4" id="1"></div>
+                    <div class="col-5" id="1"></div>
 
                 </label>
                 <label class="labl">
                     <input type="radio" id="a2" name="radioname" />
 
-                    <div class="col-4" id="2"></div>
+                    <div class="col-6" id="2"></div>
 
                 </label>
 
@@ -172,9 +171,10 @@ if (isset($_POST['checkData'])) {
         </div>
         <div>
 
-
-            <button type="submit" id="btnSubmit" onclick="check()" name="checkData">check</button>
-
+        <div class="buttons">
+            <a href="gamePanel.php" class="btn cancel">Exit</a>
+            <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">check</button>
+        </div>
         </div>
     </form>
 
@@ -260,7 +260,7 @@ if (isset($_POST['checkData'])) {
         let imgIndex = Math.floor(Math.random() * 10);
 
         //select random image
-        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 100px;'>`;
+        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 40px;'>`;
 
 
         //Generate First random ID
@@ -322,17 +322,17 @@ if (isset($_POST['checkData'])) {
 
         function check() {
             if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                swal("Good job!", "You choose the right answer.", "success");
+                swal("Good job! 🤩", "You choose the right answer 🏆 ", "success");
 
             } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                swal("Excellent!", "Keep Going", "success");
+                swal("Excellent! 😀", "Keep Going 👏", "success");
 
             } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                swal("Well done!", "You are so smart", "success");
+                swal("Well done! 😇", "You are so smart 🏅", "success");
 
             } else {
 
-                swal("That is not a suitable answer, Correct answer : " + numberOne + "÷" + numberTwo + "=" + correctAnswer, "Give another try", "error");
+                swal("Wrong Answer  😕", "Right Answer : "+ numberOne+ " ÷ "+ numberTwo +" = "+correctAnswer, "error");
             }
         }
         setTimeout(() => {
@@ -349,6 +349,9 @@ if (isset($_POST['checkData'])) {
             speakData.lang = 'en';
             speakData.voice = getVoices()[3];
             speechSynthesis.speak(speakData);
+            setTimeout(() => {
+                speakMe();
+            }, 15000);
         }
 
         function getVoices() {
