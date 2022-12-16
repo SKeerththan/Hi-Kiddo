@@ -444,14 +444,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level one Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelOne>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelOne>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelOne>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelOne>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
@@ -459,14 +459,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level Two Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelTwo>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelTwo>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelTwo>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelTwo>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
@@ -474,14 +474,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level Three Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelThree>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelThree>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelThree>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelThree>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
@@ -489,14 +489,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level Four Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFour>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFour>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFour>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFour>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
@@ -504,14 +504,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level Five Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFive>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelFive>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFive>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelFive>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
@@ -519,14 +519,14 @@ if (isset($_POST['deleteStudent'])) {
 
     //Level Six Male and Female Details
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelSix>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Male' AND levelSix>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];
     echo "maleCount.push( " . $data . ");";
 
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelSix>10";
+    $sql = "SELECT COUNT(indexNo) as maleCount FROM student WHERE gender= 'Female' AND levelSix>=10";
     $result = mysqli_query($con, $sql);
     $data = mysqli_fetch_assoc($result);
     $data = $data['maleCount'];

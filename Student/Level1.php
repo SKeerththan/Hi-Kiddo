@@ -9,7 +9,7 @@ if (!session_start()) {
 <?php
 if (isset($_POST['checkData'])) {
 
-    sleep(5);
+    sleep(4);
 
     //Get the values from javascript
     $correctAnswerIDs = $_POST['ans'];
@@ -71,15 +71,36 @@ if (isset($_POST['checkData'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level-1</title>
-    <link rel="stylesheet" href="libs/cute-alert/style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="CSS/style1.css" />
     <script src="libs/minn.js"></script>
-    <!-- <script>
-        $("form").submit(function() {
-            $.post($(this).attr("action"), $(this).serialize());
-            return false;
-        });
-    </script> -->
+    <style>
+        #container {
+            display: block;
+        }
+
+        @media only screen and (orientation:portrait) {
+            #container {
+                height: 100vw;
+                -webkit-transform: rotate(90deg);
+                -moz-transform: rotate(90deg);
+                -o-transform: rotate(90deg);
+                -ms-transform: rotate(90deg);
+                transform: rotate(90deg);
+            }
+        }
+
+        @media only screen and (orientation:landscape) {
+            #container {
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+                -o-transform: rotate(0deg);
+                -ms-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+        }
+    </style>
+
+
 
     <style>
         .labl {
@@ -109,208 +130,209 @@ if (isset($_POST['checkData'])) {
     </style>
 </head>
 
-<body>
-    <div class="row">
-        <a href="gamePanel.php">Exit</a>
-    </div>
-    <form action="Level1.php" id="" method="POST">
-        <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
-        <div id="loadQuestions">
+<body style="background-color:#76c7f1;" class="container">
+    <div class="cards">
+
+        <form action="Level1.php" id="" method="POST">
+            <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
+            <div id="loadQuestions">
+
+                <div class="row">
+                    <div class="col1" id="question" style="font-size: 15ex;"></div>
+                    <input type="hidden" name="ans" id="ans">
+                    <div class="col2">
+                        <img src="Images/Sign/=.png" alt="" style="height: 60px;">
+
+                    </div>
+                    <div class="col" id="dropAnswer" style="font-size: 15ex;">?</div>
+                </div>
 
 
-            <div class="row">
-                <div class="col-4" id="question" style="font-size: 20ex;"></div>
-                <input type="hidden" name="ans" id="ans">
-                <div class="col-4">
-                    <img src="Images/Sign/=.png" alt="" style="height: 100px;">
+                <div class="row1" id="answers">
+                    <label class="labl">
+                        <input type="radio" id="a0" name="radioname" />
+
+                        <div class="col-4" id="0"></div>
+
+                    </label>
+                    <label class="labl">
+                        <input type="radio" id="a1" name="radioname" />
+
+                        <div class="col-5" id="1"></div>
+
+                    </label>
+                    <label class="labl">
+                        <input type="radio" id="a2" name="radioname" checked />
+
+                        <div class="col-6" id="2"></div>
+
+                    </label>
 
                 </div>
-                <div class="col-4 border border-secondary" id="dropAnswer">
+            </div>
+            <div>
+                <div class="buttons">
+                    <a href="gamePanel.php" class="btn cancel">Exit</a>
+                    <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">check</button>
                 </div>
             </div>
+        </form>
 
 
-            <div class="row" id="answers">
-                <label class="labl">
-                    <input type="radio" id="a0" name="radioname" />
+        <script>
+            let numberOfAttemp = 1;
+            let startTime = new Date();
+            let systemQuestion;
+            let correctAnswer;
+            let correctAnswerID;
+            let secondAnswer;
+            let thirdAnswer;
+            let passId;
 
-                    <div class="col-4" id="0"></div>
+            //Generate Question
+            systemQuestion = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            //assign Answer to variable
+            correctAnswer = systemQuestion;
+            //assign question
+            document.getElementById("question").innerHTML = systemQuestion;
+            document.getElementById("ans").value = systemQuestion;
 
-                </label>
-                <label class="labl">
-                    <input type="radio" id="a1" name="radioname" />
+            //push correct answer to array
+            const answerArray = [];
+            answerArray.push(correctAnswer);
 
-                    <div class="col-4" id="1"></div>
+            //generate other second answer and push to same array
+            while (true) {
+                secondAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+                if ((correctAnswer != secondAnswer) && (secondAnswer > 0) && (secondAnswer < 10)) {
+                    answerArray.push(secondAnswer);
 
-                </label>
-                <label class="labl">
-                    <input type="radio" id="a2" name="radioname" checked />
-
-                    <div class="col-4" id="2"></div>
-
-                </label>
-
-            </div>
-        </div>
-        <div>
-
-
-            <button type="submit" id="btnSubmit" onclick="check()" name="checkData">check</button>
-
-        </div>
-    </form>
-
-
-    <script>
-        let numberOfAttemp = 1;
-        let startTime = new Date();
-        let systemQuestion;
-        let correctAnswer;
-        let correctAnswerID;
-        let secondAnswer;
-        let thirdAnswer;
-        let passId;
-
-        //Generate Question
-        systemQuestion = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-        //assign Answer to variable
-        correctAnswer = systemQuestion;
-        //assign question
-        document.getElementById("question").innerHTML = systemQuestion;
-        document.getElementById("ans").value = systemQuestion;
-
-        //push correct answer to array
-        const answerArray = [];
-        answerArray.push(correctAnswer);
-
-        //generate other second answer and push to same array
-        while (true) {
-            secondAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-            if ((correctAnswer != secondAnswer) && (secondAnswer > 0) && (secondAnswer < 10)) {
-                answerArray.push(secondAnswer);
-
-                break;
+                    break;
+                }
             }
-        }
-        //generate other third answer and push to same array
-        while (true) {
-            thirdAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-            if ((correctAnswer != thirdAnswer) && (thirdAnswer > 0) && (thirdAnswer < 10) && (secondAnswer != thirdAnswer)) {
-                answerArray.push(thirdAnswer);
-                break;
+            //generate other third answer and push to same array
+            while (true) {
+                thirdAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+                if ((correctAnswer != thirdAnswer) && (thirdAnswer > 0) && (thirdAnswer < 10) && (secondAnswer != thirdAnswer)) {
+                    answerArray.push(thirdAnswer);
+                    break;
+                }
             }
-        }
 
-        //check in console the generated array
-        console.log(answerArray);
-
-
-        //Randomly assign answer in different places
-
-        //Declare ID for answers
-        let firstId;
-        let secondId;
-        let thirdId;
-        let imageSrc;
-
-        //generate random number to find  a random image
-        let imgIndex = Math.floor(Math.random() * 10);
-
-        //select random image
-        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 100px;'>`;
+            //check in console the generated array
+            console.log(answerArray);
 
 
-        //Generate First random ID
-        firstId = Math.floor(Math.random() * 3);
+            //Randomly assign answer in different places
 
-        //Log
-        console.log(firstId);
+            //Declare ID for answers
+            let firstId;
+            let secondId;
+            let thirdId;
+            let imageSrc;
 
-        //output image count
-        let outSrc = "";
+            //generate random number to find  a random image
+            let imgIndex = Math.floor(Math.random() * 10);
 
-        //assign correct answer id as first ne
-        correctAnswerID = firstId;
+            //select random image
+            imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 30px;'>`;
 
 
-        //print the correct answer in randomly generated ID place
-        document.getElementById(firstId).innerHTML = answerArray[0];
-        document.getElementById('a' + firstId).value = answerArray[0];
+            //Generate First random ID
+            firstId = Math.floor(Math.random() * 3);
 
-        //Generate Second ID to print the second answer
-        while (true) {
-            secondId = secondAnswer = Math.floor(Math.random() * 3);
-            if ((firstId != secondId)) {
-                let outSrc = "";
-                document.getElementById(secondId).innerHTML = answerArray[1];
-                document.getElementById('a' + secondId).value = answerArray[1];
+            //Log
+            console.log(firstId);
 
-                break;
+            //output image count
+            let outSrc = "";
+
+            //assign correct answer id as first ne
+            correctAnswerID = firstId;
+
+            imageNumberSrc = `<img src='Images/Numbers/${answerArray[0]}.png' class='sign' alt=''  style='height: 100px;'>`;
+            //print the correct answer in randomly generated ID place
+            document.getElementById(firstId).innerHTML = imageNumberSrc;
+            document.getElementById('a' + firstId).value = answerArray[0];
+
+            //Generate Second ID to print the second answer
+            while (true) {
+                secondId = secondAnswer = Math.floor(Math.random() * 3);
+                if ((firstId != secondId)) {
+                    let outSrc = "";
+                    imageNumberSrc = `<img src='Images/Numbers/${answerArray[1]}.png' class='sign' alt=''  style='height: 100px;'>`;
+
+                    document.getElementById(secondId).innerHTML = imageNumberSrc;
+                    document.getElementById('a' + secondId).value = answerArray[1];
+
+                    break;
+                }
             }
-        }
 
-        //Generate Third ID to print the Third answer
-        while (true) {
-            thirdId = secondAnswer = Math.floor(Math.random() * 3);
-            if ((firstId != thirdId) && (secondId != thirdId)) {
-                let outSrc = "";
-                document.getElementById(thirdId).innerHTML = answerArray[2];
-                document.getElementById('a' + thirdId).value = answerArray[2];
+            //Generate Third ID to print the Third answer
+            while (true) {
+                thirdId = secondAnswer = Math.floor(Math.random() * 3);
+                if ((firstId != thirdId) && (secondId != thirdId)) {
+                    let outSrc = "";
+                    imageNumberSrc = `<img src='Images/Numbers/${answerArray[2]}.png' class='sign' alt=''  style='height: 100px;'>`;
 
-                break;
+                    document.getElementById(thirdId).innerHTML = imageNumberSrc;
+                    document.getElementById('a' + thirdId).value = answerArray[2];
+
+                    break;
+                }
             }
-        }
 
-        //Animation
-        function check() {
-            if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                swal("Good job!", "You choose the right answer.", "success");
+            //Animation
+            function check() {
+                if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
+                    swal("Good job! 🤩", "You choose the right answer 🏆 ", "success");
 
-            } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                swal("Excellent!", "Keep Going", "success");
+                } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
+                    swal("Excellent! 😀", "Keep Going 👏", "success");
 
-            } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                swal("Well done!", "You are so smart", "success");
+                } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
+                    swal("Well done! 😇", "You are so smart 🏅", "success");
 
-            } else {
+                } else {
 
-                swal("That is not a suitable answer, Correct answer is :" + correctAnswer, "Give another try", "error");
+                    swal("Wrong Answer  😕", "Right Answer : " + correctAnswer, "error");
+                }
             }
-        }
 
-        setTimeout(() => {
-            speakMe();
-        }, 2000);
-
-        function speakMe() {
-            let textToSpeak = "Find the Number " + correctAnswer;
-            let speakData = new SpeechSynthesisUtterance();
-            speakData.volume = 1; // From 0 to 1
-            speakData.rate = 1; // From 0.1 to 10
-            speakData.pitch = 2; // From 0 to 2
-            speakData.text = textToSpeak;
-            speakData.lang = 'en';
-            speakData.voice = getVoices()[3];
-            speechSynthesis.speak(speakData);
             setTimeout(() => {
                 speakMe();
-            }, 7000);
-        }
+            }, 2000);
 
-        function getVoices() {
-            let voices = speechSynthesis.getVoices();
-            if (!voices.length) {
-                let utterance = new SpeechSynthesisUtterance("");
-                speechSynthesis.speak(utterance);
-                voices = speechSynthesis.getVoices();
+            function speakMe() {
+                let textToSpeak = "Find the Number " + correctAnswer;
+                let speakData = new SpeechSynthesisUtterance();
+                speakData.volume = 1; // From 0 to 1
+                speakData.rate = 1; // From 0.1 to 10
+                speakData.pitch = 2; // From 0 to 2
+                speakData.text = textToSpeak;
+                speakData.lang = 'en';
+                speakData.voice = getVoices()[3];
+                speechSynthesis.speak(speakData);
+                setTimeout(() => {
+                    speakMe();
+                }, 15000);
             }
-            return voices;
-        }
-    </script>
 
-    <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="libs/cute-alert/cute-alert.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+            function getVoices() {
+                let voices = speechSynthesis.getVoices();
+                if (!voices.length) {
+                    let utterance = new SpeechSynthesisUtterance("");
+                    speechSynthesis.speak(utterance);
+                    voices = speechSynthesis.getVoices();
+                }
+                return voices;
+            }
+        </script>
+
+        <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="libs/cute-alert/cute-alert.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
