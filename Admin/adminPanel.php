@@ -21,13 +21,13 @@ if (isset($_POST['addStudent'])) {
 
     if ($result === TRUE) {
         $con->close();
-        echo "<script>alert('New record created successfully'); window.location = 'adminPanel.php';</script>";
+        echo "<script>alert('Record created successfully.'); window.location = 'adminPanel.php';</script>";
 
         // header("location:admminPanel.php");
 
     } else {
         $con->close();
-        echo "<script>alert('Duplicate value : check indexNo'); window.location = 'adminPanel.php';</script>";
+        echo "<script>alert('Failed'); window.location = 'adminPanel.php';</script>";
     }
 }
 
@@ -58,7 +58,7 @@ if (isset($_POST['updateStudent'])) {
 
     } else {
         $con->close();
-        echo "<script>alert('Please check your credintials : check indexNo');</script>";
+        echo "<script>alert('Please check your credintials');</script>";
     }
 }
 
@@ -85,7 +85,7 @@ if (isset($_POST['deleteStudent'])) {
 
     } else {
         $con->close();
-        echo "<script>alert('Please check your credintials : check indexNo');</script>";
+        echo "<script>alert('Choose a person to remove');</script>";
     }
 }
 
@@ -109,10 +109,11 @@ if (isset($_POST['deleteStudent'])) {
     <!-- <link rel="stylesheet" href="CSS/adminPanel.css"> -->
     <style>
         .containerBG {
-            background-image: url("Images/6.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-image: url("Images/2.jpg");
+            /* background-repeat: no-repeat;
+            background-attachment: fixed; */
             background-size: 100%;
+            
 
 
 
@@ -188,15 +189,15 @@ if (isset($_POST['deleteStudent'])) {
                     <div class="mb-3">
                         <h2>Add & Update Student</h2>
                         <label for="exampleInputEmail1" class="form-label">Index No</label>
-                        <input type="number" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="123" required>
+                        <input type="number" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="001">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo" required>
+                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">age</label>
-                        <input type="number" class="form-control" name="studentAge" id="studentAge" aria-describedby="emailHelp" placeholder="123" required>
+                        <input type="number" class="form-control" name="studentAge" id="studentAge" aria-describedby="emailHelp" placeholder="12">
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" value="Male" id="flexRadioDefault1" checked>
@@ -222,7 +223,7 @@ if (isset($_POST['deleteStudent'])) {
                     <div class="mb-3">
                         <h2>Delete Student & Generate Reports</h2>
                         <label for="exampleInputEmail1" class="form-label">Details</label>
-                        <select class="form-select" name="to_delete_user" aria-label="Default select example" required>
+                        <select class="form-select" name="to_delete_user" aria-label="Default select example">
                             <option selected>Kiddo</option>
                             <?php
                             include 'Database/dbconnect.php';
@@ -421,12 +422,26 @@ if (isset($_POST['deleteStudent'])) {
             </div>
         </div>
     </div>
+    <br>
+    <br>
 
+    <footer>
+    <div class="container  p-1 shadow-lg rounded bg-warning    snow ">
+        <div class="row text-center ">
+            <div class="col-12 ">
+                <h1 class="text-light " style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 5px black;"><b>Thank you </b></h1>
+                <audio id="notifypop">
+                    <source src="Audio/welcomee.mp3" type="audio/mp3">
+                </audio>
+            </div>
+        </div>
+
+    </div>
+    </footer>
 
     <br>
     <br>
-    <br>
-    <br>
+
 
 
 

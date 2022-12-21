@@ -1,7 +1,8 @@
 <?php
    session_start();
    
-   if(session_destroy()) {
+   if(session_start()) {
+      session_destroy();
       header("Location: loginStudent.php");
    }
 ?>
