@@ -2,14 +2,33 @@
 // Start the session
 if (!session_start()) {
     header("location:loginStudent.php");
+}else
+{
+$studentIndexNumber = $_SESSION['kidIndex'];
+include 'Database/dbconnect.php';
+$con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+$sql = mysqli_query($con, "SELECT * FROM `student` where indexNo=$studentIndexNumber ");
+$row = mysqli_num_rows($sql);
+$con->close();
+$url = "";
+while ($row = mysqli_fetch_array($sql)) {
+
+    $levelOneCount = $row['levelOne'];
+   
 }
 
+if($levelOneCount >10){
+    header("location:loaderLevel.php");
+}
+
+
+
+}
 
 ?>
 <?php
 if (isset($_POST['checkData'])) {
 
-    sleep(4);
 
     //Get the values from javascript
     $correctAnswerIDs = $_POST['ans'];
@@ -21,7 +40,7 @@ if (isset($_POST['checkData'])) {
 
     if ($correctAnswerIDs === $selectTagChecks) {
 
-        include 'Database/dbconnect.php';
+        //include 'Database/dbconnect.php';
         $studentIndexNumber = $_SESSION['kidIndex'];
         $status = 1;
         $duration = (time() - $_POST['enterTime']);
@@ -35,13 +54,17 @@ if (isset($_POST['checkData'])) {
         //     $con->close();
         //     // echo "<script>alert('Duplicate value : check indexNo');</script>";
         // }
+        $con->close();
     } else {
-        include 'Database/dbconnect.php';
+        //include 'Database/dbconnect.php';
         $studentIndexNumber = $_SESSION['kidIndex'];
         $status = 0;
         $duration = (time() - $_POST['enterTime']);
         $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $result = $con->query("INSERT INTO `levelone`( `studentindexno`, `status`, `time`) VALUES ('$studentIndexNumber','$status','$duration')");
+        $con->close();
+        // echo "<script>  sleep(10000);<script>";
+        //echo "  swal('Sorry, Try Again 😕', 'Right Answer : ' + correctAnswer, 'error');";
 
         // if ($result === TRUE) {
         //     $con->close();
@@ -60,6 +83,7 @@ if (isset($_POST['checkData'])) {
     $data = mysqli_fetch_assoc($result);
     $data = $data['number'];
     $result = $con->query("UPDATE student SET levelOne ='$data' WHERE `indexNo`=$studentIndexNumber");
+    $con->close();
 }
 
 ?>
@@ -130,10 +154,15 @@ if (isset($_POST['checkData'])) {
     </style>
 </head>
 
+
+
+
+
+
 <body style="background-color:#76c7f1;" class="container">
     <div class="cards">
 
-        <form action="Level1.php" id="" method="POST">
+        <form action="Level1.php"  method="POST">
             <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
             <div id="loadQuestions">
 
@@ -172,11 +201,17 @@ if (isset($_POST['checkData'])) {
             </div>
             <div>
                 <div class="buttons">
-                    <a href="gamePanel.php" class="btn cancel">Exit</a>
-                    <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">check</button>
+                    <a href="Play.php" class="btn cancel">Exit</a>
+
+                    <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">Submit</button>
                 </div>
+
+                <p><?php echo $levelOneCount."/10"; ?></p>
+                
             </div>
         </form>
+
+
 
 
         <script>
@@ -286,7 +321,7 @@ if (isset($_POST['checkData'])) {
             //Animation
             function check() {
                 if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                    swal("Good job! 🤩", "You choose the right answer 🏆 ", "success");
+                    swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
 
                 } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
                     swal("Excellent! 😀", "Keep Going 👏", "success");
@@ -296,7 +331,9 @@ if (isset($_POST['checkData'])) {
 
                 } else {
 
-                    swal("Wrong Answer  😕", "Right Answer : " + correctAnswer, "error");
+                    swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
+               
+
                 }
             }
 
@@ -329,6 +366,7 @@ if (isset($_POST['checkData'])) {
                 return voices;
             }
         </script>
+        
 
         <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script src="libs/cute-alert/cute-alert.js"></script>

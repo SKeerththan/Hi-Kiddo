@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
       $_SESSION["kidIndex"] =  $indexNumber;
 
       // header("location:gamePanel.php");
-      header("location:gamePanel.php");
+      header("location:Play.php");
       $con->close();
     } else {
       //echo "<script>alert('Incorrect details');</script>";
