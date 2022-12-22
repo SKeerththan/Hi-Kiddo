@@ -18,8 +18,9 @@ if (!session_start()) {
         $levelTwoCount = $row['levelTwo'];
     }
 
-    if ($levelTwoCount > 9) {
-        header("location:loaderLevel.php");
+    if ($levelTwoCount ==10) {
+        //header("location:loaderLevel.php");
+        echo "<script>alert('You have succeeded  in completing the 10 questions. 🥳.');</script>";
     }
 }
 if (isset($_POST['checkData'])) {
@@ -151,8 +152,8 @@ if (isset($_POST['checkData'])) {
         <div>
             <div class="buttons">
             <button type="button" class="btn cancel">
-                <a href="Play.php">Exit</a> </button>
-                <label class="btn rank"><?php echo $levelTwoCount . "/10"; ?></label>
+                <a href="gamePanel.php">Exit</a> </button>
+                <label class="btn rank"><?php echo "Q".$levelTwoCount; ?></label>
                 <button type="submit" class="btn ok" id="btnSubmit" onclick="check()" name="checkData">Submit</button>
             </div>
 

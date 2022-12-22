@@ -48,6 +48,7 @@ if (isset($_POST['login'])) {
 
 <body style="background-color: #b3e6ff;" class="snow">
 
+
   <!-- header section starts  -->
 
   <header class="header">
@@ -58,9 +59,9 @@ if (isset($_POST['login'])) {
 
   <!-- header section ends -->
 
-  <div class="main ">
+  <div class="main"  style="background-color: #F3FFFF;">
 
-    <div class="login">Hi Kiddo</div>
+    <div class="login">Hi Kiddo..!</div>
     <form class="form1" method="post">
       <!-- name section starts  -->
       <select name="name" id="name" class="select">
@@ -95,6 +96,9 @@ if (isset($_POST['login'])) {
       <!-- index section starts  -->
       <button class="submit" type="submit" name="login" style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 4px gray; font-size:18px">Login </button>
     </form>
+    <!-- <br>
+    <br>
+    <br> -->
 
   </div>
 </body>
