@@ -188,15 +188,15 @@ if (isset($_POST['deleteStudent'])) {
                     <div class="mb-3">
                         <h2>Add & Update Student</h2>
                         <label for="exampleInputEmail1" class="form-label">Index No</label>
-                        <input type="text" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="123">
+                        <input type="number" class="form-control" name="studentIndexNumber" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="123" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo">
+                        <input type="text" class="form-control" name="studentName" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Kiddo" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">age</label>
-                        <input type="text" class="form-control" name="studentAge" id="studentAge" aria-describedby="emailHelp" placeholder="123">
+                        <input type="number" class="form-control" name="studentAge" id="studentAge" aria-describedby="emailHelp" placeholder="123" required>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="flexRadioDefault" value="Male" id="flexRadioDefault1" checked>
@@ -222,7 +222,7 @@ if (isset($_POST['deleteStudent'])) {
                     <div class="mb-3">
                         <h2>Delete Student & Generate Reports</h2>
                         <label for="exampleInputEmail1" class="form-label">Details</label>
-                        <select class="form-select" name="to_delete_user" aria-label="Default select example">
+                        <select class="form-select" name="to_delete_user" aria-label="Default select example" required>
                             <option selected>Kiddo</option>
                             <?php
                             include 'Database/dbconnect.php';
