@@ -25,20 +25,21 @@ while ($row = mysqli_fetch_array($sql)) {
     $levelSixCount = $row['levelSix'];
 }
 
-if ($levelOneCount <= 10) {
+if ($levelOneCount <= 9) {
     header("location:Level1.php");
-} else if ($levelTwoCount <= 10) {
+} else if ($levelTwoCount <= 9) {
     header("location:Level2.php");
-} else if ($levelThreeCount <= 10) {
+} else if ($levelThreeCount <= 9) {
     header("location:Level3.php");
-} else if ($levelFourCount <= 10) {
+} else if ($levelFourCount <= 9) {
     header("location:Level4.php");
-} else if ($levelFiveCount <= 10) {
+} else if ($levelFiveCount <= 9) {
     header("location:Level5.php");
-} else if ($levelSixCount <= 10) {
+} else if ($levelSixCount <= 9) {
     header("location:Level6.php");
 } else {
-    header("location:gameOver.php");
+   header("location:gameOver.php");
+    
 }
 
 

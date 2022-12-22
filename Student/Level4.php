@@ -1,8 +1,12 @@
 <?php
 // Start the session
+
+
+?>
+<?php
 if (!session_start()) {
     header("location:loginStudent.php");
-}else {
+} else {
     $studentIndexNumber = $_SESSION['kidIndex'];
     include 'Database/dbconnect.php';
     $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
@@ -15,13 +19,10 @@ if (!session_start()) {
         $levelFourCount = $row['levelFour'];
     }
 
-    if ($levelFourCount > 10) {
+    if ($levelFourCount > 9) {
         header("location:loaderLevel.php");
     }
 }
-
-?>
-<?php
 if (isset($_POST['checkData'])) {
 
 
@@ -44,16 +45,16 @@ if (isset($_POST['checkData'])) {
 
         if ($result === TRUE) {
             $con->close();
-           // echo "<script>alert('New record created successfully');</script>";
+            // echo "<script>alert('New record created successfully');</script>";
 
             // header("location:admminPanel.php");
 
         } else {
             $con->close();
-           // echo "<script>alert('Duplicate value : check indexNo');</script>";
+            // echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     } else {
-      //  include 'Database/dbconnect.php';
+        //  include 'Database/dbconnect.php';
 
         $studentIndexNumber = $_SESSION['kidIndex'];
         $status = 0;
@@ -63,13 +64,13 @@ if (isset($_POST['checkData'])) {
 
         if ($result === TRUE) {
             $con->close();
-          //  echo "<script>alert('New record created successfully');</script>";
+            //  echo "<script>alert('New record created successfully');</script>";
 
             // header("location:admminPanel.php");
 
         } else {
             $con->close();
-          //  echo "<script>alert('Duplicate value : check indexNo');</script>";
+            //  echo "<script>alert('Duplicate value : check indexNo');</script>";
         }
     }
 
@@ -80,6 +81,8 @@ if (isset($_POST['checkData'])) {
     $data = mysqli_fetch_assoc($result);
     $data = $data['number'];
     $result = $con->query("UPDATE student SET levelFour ='$data' WHERE `indexNo`=$studentIndexNumber");
+
+    header("Location:Level4.php");
 }
 
 ?>
@@ -92,8 +95,8 @@ if (isset($_POST['checkData'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level-4</title>
     <script src="libs/minn.js"></script>
-    <link rel="stylesheet" href="CSS/style.css">
-    
+    <link rel="stylesheet" href="CSS/button.css">
+
 
     <!-- <script>
         $("form").submit(function() {
@@ -102,11 +105,6 @@ if (isset($_POST['checkData'])) {
         });
     </script> -->
     <style>
-        .labl {
-            display: block;
-            width: 400px;
-        }
-
         .labl>input {
             /* HIDE RADIO */
             visibility: hidden;
@@ -115,57 +113,31 @@ if (isset($_POST['checkData'])) {
             /* Remove input from document flow */
         }
 
-        .labl>input+div {
-            /* DIV STYLES */
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
         .labl>input:checked+div {
             /* (RADIO CHECKED) DIV STYLES */
-            background-color: #ffd6bb;
-            border: 1px solid #ff6600;
+            background-color: #eddedf;
+            border: 3px solid #a88c8f;
         }
     </style>
 </head>
 
 <body style="background-color:#76c7f1;">
-    <div class="cards">
-        
+
     <form action="Level4.php" id="" method="POST">
         <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
         <div id="loadQuestions">
-            <div class="row">
-                <div class="col1" id="numberOne" style="font-size: 15ex;"></div>
-                <div class="col2">
-                    <img src="Images/Sign/-.png" alt="" style="height: 80px;">
+            <div class="container">
+                <div class="box" id="numberOne"></div>
+                <div class="box"><img src="" alt="">-</div>
+                <div class="box" id="numberTwo"></div>
+                <div class="box"><img src="" alt="">=</div>
 
-                </div>
-
-                <div class="col1" id="numberTwo" style="font-size: 15ex;"></div>
-                <div class="col2">
-                    <img src="Images/Sign/=.png" alt="" style="height: 60px;">
-
-                </div>
                 <input type="hidden" name="ans" id="ans">
-
-                <div class="col" id="dropAnswer" style="font-size: 15ex;">?</div>
+                <div class="box" id="dropAnswer">?</div>
             </div>
-            
-
-            <!-- <div class="row">
-                <div class="col-4" id="question" style="font-size: 20ex;"></div>
-                
-                <div class="col-4">
-                    <img src="Images/Sign/=.png" alt="" style="height: 100px;">
-
-                </div>
-                <div class="col-4 border border-secondary" id="dropAnswer">
-                </div>
-            </div> -->
 
 
-            <div class="row1" id="answers">
+            <div class="container-0" id="answers">
                 <label class="labl">
                     <input type="radio" id="a0" name="radioname" checked />
 
@@ -187,14 +159,15 @@ if (isset($_POST['checkData'])) {
 
             </div>
         </div>
-        <div>
 
         <div class="buttons">
-            <a href="Play.php" class="btn cancel">Exit</a>
-            <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">check</button>
+        <button type="button" class="btn cancel">
+                <a href="Play.php">Exit</a> </button>
+            <label class="btn rank"><?php echo $levelFourCount . "/10"; ?></label>
+            <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">Submit</button>
         </div>
-        <p><?php echo $levelFourCount."/10"; ?></p>
-        </div>
+
+
     </form>
 
 
@@ -273,7 +246,7 @@ if (isset($_POST['checkData'])) {
         let imgIndex = Math.floor(Math.random() * 10);
 
         //select random image
-        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 40px;'>`;
+        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 35px;'>`;
 
 
         //Generate First random ID
@@ -334,19 +307,27 @@ if (isset($_POST['checkData'])) {
         }
 
         function check() {
+
             if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                    swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+                // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+                alert("Good job! 🤩. You have chosen the right answer 🏆");
 
-                } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                    swal("Excellent! 😀", "Keep Going 👏", "success");
 
-                } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                    swal("Well done! 😇", "You are so smart 🏅", "success");
+            } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
+                //swal("Excellent! 😀", "Keep Going 👏", "success");
+                alert("Excellent! 😀. Keep Going 👏");
 
-                } else {
+            } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
+                // swal("Well done! 😇", "You are so smart 🏅", "success");
+                alert("Well done! 😇, You are so smart 🏅");
 
-                    swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
-                }
+
+            } else {
+
+                // swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
+                alert("Sorry, Try Again 😕, Right Answer : " + correctAnswer);
+
+            }
         }
         setTimeout(() => {
             speakMe();

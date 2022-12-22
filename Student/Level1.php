@@ -2,27 +2,22 @@
 // Start the session
 if (!session_start()) {
     header("location:loginStudent.php");
-}else
-{
-$studentIndexNumber = $_SESSION['kidIndex'];
-include 'Database/dbconnect.php';
-$con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-$sql = mysqli_query($con, "SELECT * FROM `student` where indexNo=$studentIndexNumber ");
-$row = mysqli_num_rows($sql);
-$con->close();
-$url = "";
-while ($row = mysqli_fetch_array($sql)) {
+} else {
+    $studentIndexNumber = $_SESSION['kidIndex'];
+    include 'Database/dbconnect.php';
+    $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+    $sql = mysqli_query($con, "SELECT * FROM `student` where indexNo=$studentIndexNumber ");
+    $row = mysqli_num_rows($sql);
+    $con->close();
+    $url = "";
+    while ($row = mysqli_fetch_array($sql)) {
 
-    $levelOneCount = $row['levelOne'];
-   
-}
+        $levelOneCount = $row['levelOne'];
+    }
 
-if($levelOneCount >10){
-    header("location:loaderLevel.php");
-}
-
-
-
+    if ($levelOneCount > 9) {
+        header("location:loaderLevel.php");
+    }
 }
 
 ?>
@@ -47,13 +42,7 @@ if (isset($_POST['checkData'])) {
         $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $result = $con->query("INSERT INTO `levelone`( `studentindexno`, `status`, `time`) VALUES ('$studentIndexNumber','$status','$duration')");
 
-        // if ($result === TRUE) {
-        //     $con->close();
-        //     // echo "<script>alert('Good Job');</script>";
-        // } else {
-        //     $con->close();
-        //     // echo "<script>alert('Duplicate value : check indexNo');</script>";
-        // }
+
         $con->close();
     } else {
         //include 'Database/dbconnect.php';
@@ -63,16 +52,6 @@ if (isset($_POST['checkData'])) {
         $con = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
         $result = $con->query("INSERT INTO `levelone`( `studentindexno`, `status`, `time`) VALUES ('$studentIndexNumber','$status','$duration')");
         $con->close();
-        // echo "<script>  sleep(10000);<script>";
-        //echo "  swal('Sorry, Try Again 😕', 'Right Answer : ' + correctAnswer, 'error');";
-
-        // if ($result === TRUE) {
-        //     $con->close();
-
-        // } else {
-        //     $con->close();
-        //     // echo "<script>alert('Duplicate value : check indexNo');</script>";
-        // }
     }
 
 
@@ -84,6 +63,7 @@ if (isset($_POST['checkData'])) {
     $data = $data['number'];
     $result = $con->query("UPDATE student SET levelOne ='$data' WHERE `indexNo`=$studentIndexNumber");
     $con->close();
+    header("Location:Level1.php");
 }
 
 ?>
@@ -95,43 +75,12 @@ if (isset($_POST['checkData'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Level-1</title>
-    <link rel="stylesheet" href="CSS/style1.css" />
+    <link rel="stylesheet" href="CSS/button.css" />
     <script src="libs/minn.js"></script>
-    <style>
-        #container {
-            display: block;
-        }
-
-        @media only screen and (orientation:portrait) {
-            #container {
-                height: 100vw;
-                -webkit-transform: rotate(90deg);
-                -moz-transform: rotate(90deg);
-                -o-transform: rotate(90deg);
-                -ms-transform: rotate(90deg);
-                transform: rotate(90deg);
-            }
-        }
-
-        @media only screen and (orientation:landscape) {
-            #container {
-                -webkit-transform: rotate(0deg);
-                -moz-transform: rotate(0deg);
-                -o-transform: rotate(0deg);
-                -ms-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-        }
-    </style>
 
 
 
     <style>
-        .labl {
-            display: block;
-            width: 400px;
-        }
-
         .labl>input {
             /* HIDE RADIO */
             visibility: hidden;
@@ -140,16 +89,10 @@ if (isset($_POST['checkData'])) {
             /* Remove input from document flow */
         }
 
-        .labl>input+div {
-            /* DIV STYLES */
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
         .labl>input:checked+div {
             /* (RADIO CHECKED) DIV STYLES */
-            background-color: #ffd6bb;
-            border: 1px solid #ff6600;
+            background-color: #eddedf;
+            border: 3px solid #a88c8f;
         }
     </style>
 </head>
@@ -159,218 +102,222 @@ if (isset($_POST['checkData'])) {
 
 
 
-<body style="background-color:#76c7f1;" class="container">
-    <div class="cards">
-
-        <form action="Level1.php"  method="POST">
-            <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
-            <div id="loadQuestions">
-
-                <div class="row">
-                    <div class="col1" id="question" style="font-size: 15ex;"></div>
-                    <input type="hidden" name="ans" id="ans">
-                    <div class="col2">
-                        <img src="Images/Sign/=.png" alt="" style="height: 60px;">
-
-                    </div>
-                    <div class="col" id="dropAnswer" style="font-size: 15ex;">?</div>
-                </div>
+<body style="background-color:#b3e6ff;">
 
 
-                <div class="row1" id="answers">
-                    <label class="labl">
-                        <input type="radio" id="a0" name="radioname" />
+    <form action="Level1.php" id="" method="POST">
+        <input type="hidden" name="enterTime" value="<?php echo time(); ?>">
+        <div id="loadQuestions">
 
-                        <div class="col-4" id="0"></div>
+            <div class="container">
+                <div class="box" id="question"></div>
+                <div class="box"><img src="" alt="">=</div>
 
-                    </label>
-                    <label class="labl">
-                        <input type="radio" id="a1" name="radioname" />
-
-                        <div class="col-5" id="1"></div>
-
-                    </label>
-                    <label class="labl">
-                        <input type="radio" id="a2" name="radioname" checked />
-
-                        <div class="col-6" id="2"></div>
-
-                    </label>
-
-                </div>
+                <input type="hidden" name="ans" id="ans">
+                <div class="box" id="dropAnswer">?</div>
             </div>
-            <div>
-                <div class="buttons">
-                    <a href="Play.php" class="btn cancel">Exit</a>
 
-                    <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">Submit</button>
-                </div>
 
-                <p><?php echo $levelOneCount."/10"; ?></p>
-                
+            <div class="container-0" id="answers">
+                <label class="labl">
+                    <input type="radio" id="a0" name="radioname" />
+
+                    <div class="col-4" id="0"></div>
+
+                </label>
+                <label class="labl">
+                    <input type="radio" id="a1" name="radioname" />
+
+                    <div class="col-5" id="1"></div>
+
+                </label>
+                <label class="labl">
+                    <input type="radio" id="a2" name="radioname" checked />
+
+                    <div class="col-6" id="2"></div>
+
+                </label>
+
             </div>
-        </form>
+        </div>
+
+        <div class="buttons">
+            <button type="button" class="btn cancel">
+                <a href="Play.php">Exit</a> </button>
+            <label class="btn rank"><?php echo $levelOneCount . "/10"; ?></label>
+            <button type="submit" id="btnSubmit" class="btn ok" onclick="check()" name="checkData">Submit</button>
+        </div>
 
 
 
 
-        <script>
-            let numberOfAttemp = 1;
-            let startTime = new Date();
-            let systemQuestion;
-            let correctAnswer;
-            let correctAnswerID;
-            let secondAnswer;
-            let thirdAnswer;
-            let passId;
+    </form>
 
-            //Generate Question
-            systemQuestion = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-            //assign Answer to variable
-            correctAnswer = systemQuestion;
-            //assign question
-            document.getElementById("question").innerHTML = systemQuestion;
-            document.getElementById("ans").value = systemQuestion;
 
-            //push correct answer to array
-            const answerArray = [];
-            answerArray.push(correctAnswer);
 
-            //generate other second answer and push to same array
-            while (true) {
-                secondAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-                if ((correctAnswer != secondAnswer) && (secondAnswer > 0) && (secondAnswer < 10)) {
-                    answerArray.push(secondAnswer);
 
-                    break;
-                }
+    <script>
+        let numberOfAttemp = 1;
+        let startTime = new Date();
+        let systemQuestion;
+        let correctAnswer;
+        let correctAnswerID;
+        let secondAnswer;
+        let thirdAnswer;
+        let passId;
+
+        //Generate Question
+        systemQuestion = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+        //assign Answer to variable
+        correctAnswer = systemQuestion;
+        //assign question
+        document.getElementById("question").innerHTML = systemQuestion;
+        document.getElementById("ans").value = systemQuestion;
+
+        //push correct answer to array
+        const answerArray = [];
+        answerArray.push(correctAnswer);
+
+        //generate other second answer and push to same array
+        while (true) {
+            secondAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            if ((correctAnswer != secondAnswer) && (secondAnswer > 0) && (secondAnswer < 10)) {
+                answerArray.push(secondAnswer);
+
+                break;
             }
-            //generate other third answer and push to same array
-            while (true) {
-                thirdAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-                if ((correctAnswer != thirdAnswer) && (thirdAnswer > 0) && (thirdAnswer < 10) && (secondAnswer != thirdAnswer)) {
-                    answerArray.push(thirdAnswer);
-                    break;
-                }
+        }
+        //generate other third answer and push to same array
+        while (true) {
+            thirdAnswer = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            if ((correctAnswer != thirdAnswer) && (thirdAnswer > 0) && (thirdAnswer < 10) && (secondAnswer != thirdAnswer)) {
+                answerArray.push(thirdAnswer);
+                break;
             }
+        }
 
-            //check in console the generated array
-            console.log(answerArray);
-
-
-            //Randomly assign answer in different places
-
-            //Declare ID for answers
-            let firstId;
-            let secondId;
-            let thirdId;
-            let imageSrc;
-
-            //generate random number to find  a random image
-            let imgIndex = Math.floor(Math.random() * 10);
-
-            //select random image
-            imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 30px;'>`;
+        //check in console the generated array
+        console.log(answerArray);
 
 
-            //Generate First random ID
-            firstId = Math.floor(Math.random() * 3);
+        //Randomly assign answer in different places
 
-            //Log
-            console.log(firstId);
+        //Declare ID for answers
+        let firstId;
+        let secondId;
+        let thirdId;
+        let imageSrc;
 
-            //output image count
-            let outSrc = "";
+        //generate random number to find  a random image
+        let imgIndex = Math.floor(Math.random() * 10);
 
-            //assign correct answer id as first ne
-            correctAnswerID = firstId;
+        //select random image
+        imageSrc = `<img src='Images/Fruits/${imgIndex}.png' class='sign' alt=''  style='height: 30px;'>`;
 
-            imageNumberSrc = `<img src='Images/Numbers/${answerArray[0]}.png' class='sign' alt=''  style='height: 100px;'>`;
-            //print the correct answer in randomly generated ID place
-            document.getElementById(firstId).innerHTML = imageNumberSrc;
-            document.getElementById('a' + firstId).value = answerArray[0];
 
-            //Generate Second ID to print the second answer
-            while (true) {
-                secondId = secondAnswer = Math.floor(Math.random() * 3);
-                if ((firstId != secondId)) {
-                    let outSrc = "";
-                    imageNumberSrc = `<img src='Images/Numbers/${answerArray[1]}.png' class='sign' alt=''  style='height: 100px;'>`;
+        //Generate First random ID
+        firstId = Math.floor(Math.random() * 3);
 
-                    document.getElementById(secondId).innerHTML = imageNumberSrc;
-                    document.getElementById('a' + secondId).value = answerArray[1];
+        //Log
+        console.log(firstId);
 
-                    break;
-                }
+        //output image count
+        let outSrc = "";
+
+        //assign correct answer id as first ne
+        correctAnswerID = firstId;
+
+        imageNumberSrc = `<img src='Images/Numbers/${answerArray[0]}.png' class='sign' alt=''  style='height: 100px;'>`;
+        //print the correct answer in randomly generated ID place
+        document.getElementById(firstId).innerHTML = imageNumberSrc;
+        document.getElementById('a' + firstId).value = answerArray[0];
+
+        //Generate Second ID to print the second answer
+        while (true) {
+            secondId = secondAnswer = Math.floor(Math.random() * 3);
+            if ((firstId != secondId)) {
+                let outSrc = "";
+                imageNumberSrc = `<img src='Images/Numbers/${answerArray[1]}.png' class='sign' alt=''  style='height: 100px;'>`;
+
+                document.getElementById(secondId).innerHTML = imageNumberSrc;
+                document.getElementById('a' + secondId).value = answerArray[1];
+
+                break;
             }
+        }
 
-            //Generate Third ID to print the Third answer
-            while (true) {
-                thirdId = secondAnswer = Math.floor(Math.random() * 3);
-                if ((firstId != thirdId) && (secondId != thirdId)) {
-                    let outSrc = "";
-                    imageNumberSrc = `<img src='Images/Numbers/${answerArray[2]}.png' class='sign' alt=''  style='height: 100px;'>`;
+        //Generate Third ID to print the Third answer
+        while (true) {
+            thirdId = secondAnswer = Math.floor(Math.random() * 3);
+            if ((firstId != thirdId) && (secondId != thirdId)) {
+                let outSrc = "";
+                imageNumberSrc = `<img src='Images/Numbers/${answerArray[2]}.png' class='sign' alt=''  style='height: 100px;'>`;
 
-                    document.getElementById(thirdId).innerHTML = imageNumberSrc;
-                    document.getElementById('a' + thirdId).value = answerArray[2];
+                document.getElementById(thirdId).innerHTML = imageNumberSrc;
+                document.getElementById('a' + thirdId).value = answerArray[2];
 
-                    break;
-                }
+                break;
             }
+        }
 
-            //Animation
-            function check() {
-                if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                    swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+        //Animation
+        function check() {
 
-                } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                    swal("Excellent! 😀", "Keep Going 👏", "success");
+            if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
+                // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+                alert("Good job! 🤩. You have chosen the right answer 🏆");
 
-                } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                    swal("Well done! 😇", "You are so smart 🏅", "success");
 
-                } else {
+            } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
+                //swal("Excellent! 😀", "Keep Going 👏", "success");
+                alert("Excellent! 😀. Keep Going 👏");
 
-                    swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
-               
+            } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
+                // swal("Well done! 😇", "You are so smart 🏅", "success");
+                alert("Well done! 😇, You are so smart 🏅");
 
-                }
+
+            } else {
+
+                // swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
+                alert("Sorry, Try Again 😕, Right Answer : " + correctAnswer);
+
             }
+        }
 
+        setTimeout(() => {
+            speakMe();
+        }, 2000);
+
+        function speakMe() {
+            let textToSpeak = "Find the Number " + correctAnswer;
+            let speakData = new SpeechSynthesisUtterance();
+            speakData.volume = 1; // From 0 to 1
+            speakData.rate = 1; // From 0.1 to 10
+            speakData.pitch = 2; // From 0 to 2
+            speakData.text = textToSpeak;
+            speakData.lang = 'en';
+            speakData.voice = getVoices()[3];
+            speechSynthesis.speak(speakData);
             setTimeout(() => {
                 speakMe();
-            }, 2000);
+            }, 15000);
+        }
 
-            function speakMe() {
-                let textToSpeak = "Find the Number " + correctAnswer;
-                let speakData = new SpeechSynthesisUtterance();
-                speakData.volume = 1; // From 0 to 1
-                speakData.rate = 1; // From 0.1 to 10
-                speakData.pitch = 2; // From 0 to 2
-                speakData.text = textToSpeak;
-                speakData.lang = 'en';
-                speakData.voice = getVoices()[3];
-                speechSynthesis.speak(speakData);
-                setTimeout(() => {
-                    speakMe();
-                }, 15000);
+        function getVoices() {
+            let voices = speechSynthesis.getVoices();
+            if (!voices.length) {
+                let utterance = new SpeechSynthesisUtterance("");
+                speechSynthesis.speak(utterance);
+                voices = speechSynthesis.getVoices();
             }
+            return voices;
+        }
+    </script>
 
-            function getVoices() {
-                let voices = speechSynthesis.getVoices();
-                if (!voices.length) {
-                    let utterance = new SpeechSynthesisUtterance("");
-                    speechSynthesis.speak(utterance);
-                    voices = speechSynthesis.getVoices();
-                }
-                return voices;
-            }
-        </script>
-        
-
-        <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="libs/cute-alert/cute-alert.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="libs/cute-alert/cute-alert.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
