@@ -46,21 +46,12 @@ if (!session_start()) {
                 background-position: 0px 300px;
             }
         }
-
-        /* 
-        @media screen and (min-width:620px){
-
-        }
-        
-        @media screen and (max-hight:400px){
-            
-        } */
     </style>
 </head>
 
 
 <body class="snow" style="background-color: #C5E1A5;">
-    <!-- <body class="" style="background-image: url('Images/2.jpg');background-size: cover;"> -->
+
     <header class="header">
         <?php
         echo "<a href='#' style='color:rgb(52, 95, 152)' class='logo'>  Hi " . $_SESSION['kidName'] . " 😜 </a>";

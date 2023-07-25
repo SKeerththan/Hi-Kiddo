@@ -57,7 +57,7 @@
             echo "</script>";
         }
         if ($levelTwoCount >= 10) {
-            //header("location:loaderLevel.php");
+
             echo "<script type='text/javascript'>";
             echo "Swal.fire({
                     title: 'Congratulations . . . 🎇 ',
@@ -73,17 +73,17 @@
     if (isset($_POST['ans']) && isset($_POST['radioname'])) {
 
 
-        //Get the values from javascript
+
         $correctAnswerIDs = $_POST['ans'];
-        // echo $correctAnswerIDs;
+
 
         $selectTagChecks = $_POST['radioname'];
-        // echo $selectTagChecks;
+
 
 
         if ($correctAnswerIDs === $selectTagChecks) {
 
-            // include 'Database/dbconnect.php';
+
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 1;
             $duration = (time() - $_POST['enterTime']);
@@ -92,16 +92,11 @@
 
             if ($result === TRUE) {
                 $con->close();
-                // echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         } else {
-            //include 'Database/dbconnect.php';
+
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 0;
             $duration = (time() - $_POST['enterTime']);
@@ -110,13 +105,8 @@
 
             if ($result === TRUE) {
                 $con->close();
-                // echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         }
         $studentIndexNumber = $_SESSION['kidIndex'];
@@ -190,7 +180,7 @@
                 return false;
             } else {
                 if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                    // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
                         title: '"Good job! 🤩',
@@ -202,8 +192,7 @@
                     })
 
                 } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                    //swal("Excellent! 😀", "Keep Going 👏", "success");
-                    //alert("Excellent! 😀. Keep Going 👏");
+
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
                         title: 'Excellent! 😀',
@@ -215,8 +204,7 @@
                     })
 
                 } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                    // swal("Well done! 😇", "You are so smart 🏅", "success");
-                    // alert("Well done! 😇, You are so smart 🏅");
+
 
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
@@ -238,8 +226,6 @@
                     });;
 
                 }
-
-                // Form is valid, allow submission
 
             }
         }
@@ -364,29 +350,7 @@
             }
         }
 
-        // function check() {
 
-        //     if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-        //         // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
-        //         alert("Good job! 🤩. You have chosen the right answer 🏆");
-
-
-        //     } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-        //         //swal("Excellent! 😀", "Keep Going 👏", "success");
-        //         alert("Excellent! 😀. Keep Going 👏");
-
-        //     } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-        //         // swal("Well done! 😇", "You are so smart 🏅", "success");
-        //         alert("Well done! 😇, You are so smart 🏅");
-
-
-        //     } else {
-
-        //         // swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
-        //         alert("Sorry, Try Again 😕, Right Answer : " + correctAnswer);
-
-        //     }
-        // }
         setTimeout(() => {
             speakMe();
         }, 2000);

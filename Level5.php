@@ -9,12 +9,7 @@
     <link rel="stylesheet" href="CSS/button.css">
 
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
-    <!-- <script>
-        $("form").submit(function() {
-            $.post($(this).attr("action"), $(this).serialize());
-            return false;
-        });
-    </script> -->
+
     <style>
         .labl>input {
             /* HIDE RADIO */
@@ -82,15 +77,15 @@
 
         //Get the values from javascript
         $correctAnswerIDs = $_POST['ans'];
-        // echo $correctAnswerIDs;
+
 
         $selectTagChecks = $_POST['radioname'];
-        // echo $selectTagChecks;
+
 
 
         if ($correctAnswerIDs === $selectTagChecks) {
 
-            //  include 'Database/dbconnect.php';
+
 
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 1;
@@ -100,16 +95,11 @@
 
             if ($result === TRUE) {
                 $con->close();
-                //  echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         } else {
-            //include 'Database/dbconnect.php';
+
 
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 0;
@@ -119,13 +109,8 @@
 
             if ($result === TRUE) {
                 $con->close();
-                // echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         }
         $studentIndexNumber = $_SESSION['kidIndex'];
@@ -214,8 +199,7 @@
                         })
 
                     } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                        //swal("Excellent! 😀", "Keep Going 👏", "success");
-                        //alert("Excellent! 😀. Keep Going 👏");
+
                         Swal.fire({
                             icon: 'success', // Use the 'error' icon for this alert
                             title: 'Excellent! 😀',
@@ -227,8 +211,7 @@
                         })
 
                     } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                        // swal("Well done! 😇", "You are so smart 🏅", "success");
-                        // alert("Well done! 😇, You are so smart 🏅");
+
 
                         Swal.fire({
                             icon: 'success', // Use the 'error' icon for this alert
@@ -251,7 +234,6 @@
 
                     }
 
-                    // Form is valid, allow submission
 
                 }
             }
@@ -389,29 +371,7 @@
                 }
             }
 
-            // function check() {
 
-            //     if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-            //         // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
-            //         alert("Good job! 🤩. You have chosen the right answer 🏆");
-
-
-            //     } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-            //         //swal("Excellent! 😀", "Keep Going 👏", "success");
-            //         alert("Excellent! 😀. Keep Going 👏");
-
-            //     } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-            //         // swal("Well done! 😇", "You are so smart 🏅", "success");
-            //         alert("Well done! 😇, You are so smart 🏅");
-
-
-            //     } else {
-
-            //         // swal("Sorry, Try Again 😕", "Right Answer : " + correctAnswer, "error");
-            //         alert("Sorry, Try Again 😕, Right Answer : " + correctAnswer);
-
-            //     }
-            // }
             setTimeout(() => {
                 speakMe();
             }, 2000);

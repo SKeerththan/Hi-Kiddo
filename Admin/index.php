@@ -19,7 +19,7 @@ if (isset($_POST['login'])) {
     } else {
       echo "<script>alert('wrong password');</script>";
       $con->close();
-      //header("location:signUp.php");
+       
     }
   }
 }

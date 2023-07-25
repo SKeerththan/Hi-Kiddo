@@ -1,5 +1,5 @@
 
-/* confetti cannon effect made with: https://www.kirilv.com/canvas-confetti/ */
+
 
 const sound = document.getElementById("sound");
 const triggers = document.querySelectorAll(".js-confetti");

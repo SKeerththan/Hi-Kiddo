@@ -76,15 +76,15 @@
 
         //Get the values from javascript
         $correctAnswerIDs = $_POST['ans'];
-        // echo $correctAnswerIDs;
+
 
         $selectTagChecks = $_POST['radioname'];
-        // echo $selectTagChecks;
+
 
 
         if ($correctAnswerIDs === $selectTagChecks) {
 
-            // include 'Database/dbconnect.php';
+
 
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 1;
@@ -94,16 +94,11 @@
 
             if ($result === TRUE) {
                 $con->close();
-                // echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         } else {
-            // include 'Database/dbconnect.php';
+
 
             $studentIndexNumber = $_SESSION['kidIndex'];
             $status = 0;
@@ -113,13 +108,8 @@
 
             if ($result === TRUE) {
                 $con->close();
-                // echo "<script>alert('New record created successfully');</script>";
-
-                // header("location:admminPanel.php");
-
             } else {
                 $con->close();
-                // echo "<script>alert('Duplicate value : check indexNo');</script>";
             }
         }
         $studentIndexNumber = $_SESSION['kidIndex'];
@@ -194,7 +184,7 @@
                 return false;
             } else {
                 if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-                    // swal("Good job! 🤩", "You have chosen the right answer 🏆 ", "success");
+
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
                         title: '"Good job! 🤩',
@@ -206,8 +196,7 @@
                     })
 
                 } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-                    //swal("Excellent! 😀", "Keep Going 👏", "success");
-                    //alert("Excellent! 😀. Keep Going 👏");
+
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
                         title: 'Excellent! 😀',
@@ -219,8 +208,7 @@
                     })
 
                 } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-                    // swal("Well done! 😇", "You are so smart 🏅", "success");
-                    // alert("Well done! 😇, You are so smart 🏅");
+
 
                     Swal.fire({
                         icon: 'success', // Use the 'error' icon for this alert
@@ -243,7 +231,6 @@
 
                 }
 
-                // Form is valid, allow submission
 
             }
         }
@@ -280,11 +267,7 @@
 
         document.getElementById("ans").value = correctAnswer;
 
-        //assign question
-        // document.getElementById("question").innerHTML = systemQuestion;
 
-
-        //push correct answer to array
         const answerArray = [];
         answerArray.push(correctAnswer);
 
@@ -382,29 +365,7 @@
             }
         }
 
-        // function check() {
 
-        //     if ((document.getElementById('a0').checked) && document.getElementById('a0').value == correctAnswer) {
-
-        //         alert("Good job! 🤩. You have chosen the right answer 🏆");
-
-
-        //     } else if ((document.getElementById('a1').checked) && document.getElementById('a1').value == correctAnswer) {
-
-        //         alert("Excellent! 😀. Keep Going 👏");
-
-        //     } else if ((document.getElementById('a2').checked) && document.getElementById('a2').value == correctAnswer) {
-
-        //         alert("Well done! 😇, You are so smart 🏅");
-
-
-        //     } else {
-
-
-        //         alert("Sorry, Try Again 😕, Right Answer : " + correctAnswer);
-
-        //     }
-        // }
         setTimeout(() => {
             speakMe();
         }, 2000);
@@ -435,9 +396,7 @@
         }
     </script>
 
-    <!-- 
-    <script src="https: //unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="libs/cute-alert/cute-alert.js"></script> -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 

@@ -362,7 +362,7 @@ if (isset($_POST['name']) && isset($_POST['indexNumber'])) {
         ?>
       </select>
       <!-- index section starts  -->
-      <button class="submit" type="submit" name="login" style="    cursive;text-shadow: 2px 2px 4px gray; font-size:18px">Login </button>
+      <button class="submit" type="submit" name="login" style=" text-shadow: 2px 2px 4px gray; font-size:18px">Login </button>
     </form>
 
   </div>
