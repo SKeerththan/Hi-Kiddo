@@ -17,6 +17,7 @@ if (!session_start()) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="CSS/gamepanel.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <title>Kiddo</title>
     <style>
@@ -58,16 +59,16 @@ if (!session_start()) {
 </head>
 
 
-<body class="snow" style="background-color: #b3e6ff;">
+<body class="snow" style="background-color: #C5E1A5;">
     <!-- <body class="" style="background-image: url('Images/2.jpg');background-size: cover;"> -->
     <header class="header">
         <?php
-        echo "<a href='#' class='logo'>👉  Hi " . $_SESSION['kidName'] . "...&#11088 </a>";
+        echo "<a href='#' style='color:rgb(52, 95, 152)' class='logo'>  Hi " . $_SESSION['kidName'] . " 😜 </a>";
 
         ?>
         <nav class="navbar">
             <a href="Play.php" hidden>Go Back</a>
-            <a href="logoutStudent.php">Logout <i style="font-size:20px" class="fa">👋</i></a>
+            <a style='color:rgb(52, 95, 152)' href="logoutStudent.php"> Logout &nbsp;<i class="fa-solid fa-right-from-bracket"> </i> </a>
         </nav>
 
     </header>

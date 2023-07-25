@@ -106,6 +106,8 @@ if (isset($_POST['deleteStudent'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <!-- <link rel="stylesheet" href="CSS/adminPanel.css"> -->
     <style>
         .containerBG {
@@ -113,7 +115,7 @@ if (isset($_POST['deleteStudent'])) {
             /* background-repeat: no-repeat;
             background-attachment: fixed; */
             background-size: 100%;
-            
+
 
 
 
@@ -158,16 +160,25 @@ if (isset($_POST['deleteStudent'])) {
 <body class="containerBG " onload="autoNotify()">
 
 
-    <div class="container  p-1 shadow-lg rounded bg-warning  fixed-top   snow ">
-        <div class="row text-center ">
-            <div class="col-12 ">
-                <h1 class="text-light " style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 5px black;"><b>Math-4-Mind</b></h1>
-                <audio id="notifypop">
-                    <source src="Audio/welcomee.mp3" type="audio/mp3">
-                </audio>
+    <div class="container p-1 shadow-lg rounded bg-warning fixed-top snow">
+        <div class="row align-items-center">
+            <div class="col-2"></div> <!-- Empty div to center the content -->
+            <div class="col-8 text-center">
+                <h1 class="text-light" style="font-family: 'Brush Script MT', cursive; text-shadow: 2px 2px 5px black;">
+                    <b>Math-4-Mind</b>
+                    <audio id="notifypop">
+                        <source src="Audio/welcomee.mp3" type="audio/mp3">
+                    </audio>
+                </h1>
             </div>
-        </div>
+            <div class="col-2">
+                <a href="logoutAdmin.php">
+                    <i style="color: black; font-size: 20px;" class="fa-solid fa-right-from-bracket"></i>
 
+                </a>
+            </div>
+
+        </div>
     </div>
 
     <script>
@@ -426,17 +437,17 @@ if (isset($_POST['deleteStudent'])) {
     <br>
 
     <footer>
-    <div class="container  p-1 shadow-lg rounded bg-warning    snow ">
-        <div class="row text-center ">
-            <div class="col-12 ">
-                <h1 class="text-light " style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 5px black;"><b>Thank you </b></h1>
-                <audio id="notifypop">
-                    <source src="Audio/welcomee.mp3" type="audio/mp3">
-                </audio>
+        <div class="container  p-1 shadow-lg rounded bg-warning    snow ">
+            <div class="row text-center ">
+                <div class="col-12 ">
+                    <h1 class="text-light " style="  font-family: 'Brush Script MT', cursive;text-shadow: 2px 2px 5px black;"><b>Thank you </b></h1>
+                    <audio id="notifypop">
+                        <source src="Audio/welcomee.mp3" type="audio/mp3">
+                    </audio>
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     </footer>
 
     <br>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2022 at 02:45 PM
+-- Generation Time: Jul 25, 2023 at 01:51 PM
 -- Server version: 10.6.5-MariaDB
--- PHP Version: 7.4.26
+-- PHP Version: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
 --
 
 INSERT INTO `admin` (`email`, `password`, `organization`) VALUES
-('test@test.com', 'test', 'test');
+('test', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `levelfive` (
   `status` varchar(500) NOT NULL,
   `time` varchar(400) NOT NULL,
   PRIMARY KEY (`qId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `levelfour` (
   `status` varchar(400) NOT NULL,
   `time` varchar(400) NOT NULL,
   PRIMARY KEY (`qId`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -85,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `levelone` (
   `status` varchar(10) NOT NULL,
   `time` varchar(50) NOT NULL,
   PRIMARY KEY (`qId`)
-) ENGINE=InnoDB AUTO_INCREMENT=228 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=816 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `levelsix` (
   `status` varchar(500) NOT NULL,
   `time` varchar(50) NOT NULL,
   PRIMARY KEY (`qId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `levelthree` (
   `status` varchar(400) NOT NULL,
   `time` varchar(400) NOT NULL,
   PRIMARY KEY (`qid`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `leveltwo` (
   `status` varchar(200) NOT NULL,
   `time` varchar(200) NOT NULL,
   PRIMARY KEY (`qId`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -152,6 +152,13 @@ CREATE TABLE IF NOT EXISTS `student` (
   `levelSix` varchar(900) NOT NULL DEFAULT '0',
   PRIMARY KEY (`indexNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`indexNo`, `name`, `age`, `gender`, `levelOne`, `levelTwo`, `levelThree`, `levelFour`, `levelFive`, `levelSix`) VALUES
+('001', 'kiddo', '77', 'Female', '0', '0', '0', '0', '0', '0');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

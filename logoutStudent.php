@@ -3,6 +3,5 @@
    
    if(session_start()) {
       session_destroy();
-      header("Location: loginStudent.php");
+      header("Location: index.php");
    }
-?>
